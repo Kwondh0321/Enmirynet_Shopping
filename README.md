@@ -17,8 +17,8 @@
 
 This project is copyrighted to Enmirynet in 2024. The source code of this project is subject to the following copyright terms:
 
-- Backend Code : Open to the public, anyone can use but prohibit from sharing
-- Frontend Code : Open to the public, excluding the design. Modifications are allowed for functional purposes.
+- **Back-end Code** : Open to the public, anyone can use but prohibit from sharing
+- **Front-end Code** : Open to the public, excluding the design. Modifications are allowed for functional purposes.
 
 ## Warning
 
