@@ -36,7 +36,7 @@ app.get("/", (req, res) => {
 });
 
 app.all("/image_11st", async (req, res) => {
-  if (req.query?.link == undefined) throw new Error("Image link not provided");
+  if (req.query?.link == undefined) return res.status(400).json({ message: "Image link not provided" });
   let { data } = await axios(`https://cdn.011st.com/${req.query?.link}`, {
     responseType: "arraybuffer",
   });
@@ -45,7 +45,7 @@ app.all("/image_11st", async (req, res) => {
 });
 
 app.all("/image_naver", async (req, res) => {
-  if (req.query?.link == undefined) throw new Error("Image link not provided");
+  if (req.query?.link == undefined) return res.status(400).json({ message: "Image link not provided" });
   let { data } = await axios(`https://shopping-phinf.pstatic.net/${req.query?.link}`,{ responseType: "arraybuffer" });
   const resizedImageBuffer = await sharp(data).resize(640, 480).toBuffer();
   res.writeHead(200, { "Content-Type": "image/jpeg" }).end(resizedImageBuffer);
