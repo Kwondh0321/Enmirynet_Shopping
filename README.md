@@ -1,4 +1,4 @@
-# Enmirynet_Shopping (쇼핑엔미리넷)
+# Enmirynet_Shopping
 
 [Enmirynet_Shopping](https://shopping.ournicerver.com/) is a service that retrieves responses from APIs of various shopping mall websites and presents integrated results for user-entered search queries.
 
