@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="ko">
+
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+  <meta property="og:image" content="img/icon.png" />
+	<meta name="description" content="늘어가는 쇼핑몰, 분산되는 사이트. Shopping_Enmirynet에서 한 번만 검색하세요! 마법의 램프처럼 뿅~" />
+  	<script src="js/sweetalert.min.js"></script>
+	<title>쇼핑엔미리넷</title>
+	<link rel="stylesheet" href="css/search.css">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Fasthand&display=swap" rel="stylesheet">
+	<script src="js/all.js"></script>
+	<script src="js/search.js" defer></script>
+	<script src="js/add_keyword.js" defer></script>
+	<div class="head_title">
+		<a href="https://shopping.ournicerver.com">Shopping_EnMirynet</a>
+	</div>
+  <br>
+</head>
+
+<body>
+	<div class="search_box">
+		<input class="input_keyword" id="input_keyword" type="text" maxlength="63" placeholder="검색어를 입력하시오..." onkeypress="if(event.keyCode == 13){myFunction()}"></input>
+	</div>
+<!--   <div class="right_sidebar">
+          <div class="right_sidebar_box">
+            <button class="right_sidebar_box_readmore">
+              <a onclick="swal('추가 검색태그 사용법', '*추가적인 검색태그를 입력하지 않을 시\n검색어만 입력하고 검색하시면 됩니다*\n\n\n1. 검색어를 입력하세요\n\n2. 키워드를 추가하세요\n\n3. 최종검색 버튼을 클릭시 상세한 검색이 가능해요~!' )">Read More</a>
+            </button>
+            <br>
+            <input class="add_keyword" type="text" id="sharp" maxlength="30" placeholder="#키워드" onkeypress="if(event.keyCode == 13){add_keyword()}">
+          </div>
+       <div id="collected_keyword"></div>
+     </div> -->
+  <br><br>
+	<div id="search_index" class="searchs"></div>
+  <div class= "up_btn">
+	<a id="TOP" style="visibility:hidden" href="javascript:void(0)"><img src="img/top.png" width="60px" height="60px"></a>
+  </div>
+</body>
+
+</html>
