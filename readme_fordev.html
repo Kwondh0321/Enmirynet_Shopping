@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ko">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>README for EnMirynet_Shopping</title>
+  </head>
+  <style>
+    body {
+      font-size: 18px;
+    }
+  </style>
+  <body>
+    <div id="markdown-container"></div>
+    <script>
+      const markdownFilePath = "README_forDev.md";
+
+      fetch(markdownFilePath)
+        .then((response) => response.text())
+        .then((markdownText) => {
+          const htmlContent = convertMarkdownToHTML(markdownText);
+          document.getElementById("markdown-container").innerHTML = htmlContent;
+        })
+        .catch((error) =>
+          console.error("Error fetching Markdown file:", error),
+        );
+
+      function convertMarkdownToHTML(markdownText) {
+        // #에 해당하는 내용도 h1~h5 태그로 변환
+        const finalHTML = markdownText.replace(
+          /^(#{1,5})\s+(.+)$/gm,
+          (match, heading, content) => {
+            const tabs = "&nbsp;&nbsp;".repeat(heading.length - 1);
+            return `<h${heading.length}>${tabs}${content.trim()}</h${
+              heading.length
+            }>`;
+          },
+        );
+
+        return finalHTML;
+      }
+    </script>
+  </body>
+</html>
