@@ -166,7 +166,7 @@ async function searchNaver(search, search_data) {
                 <div class="fruite-img">
                     <img src="${k.category3._text == "성인용" || k.category3._text == "기타건강관리용품" ? "img/MinorYn.jpeg" : Image_Naver + encodeURI(k.image._text.replace("https://shopping-phinf.pstatic.net/", ""))}" class="img-fluid w-100 rounded-top" alt="">
                 </div>
-                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">${k.maker._text ? k.maker._text : k.brand._text}</div>
+                <div class="text-white bg-secondary px-3 py-1 rounded position-absolute" style="top: 10px; left: 10px;">${k.maker._text ? k.maker._text : k.brand._text ? k.brand._text : k.mallName._text}</div>
                 <div class="p-4 border border-secondary border-top-0 rounded-bottom">
                     <h4>${truncateText(k.title._text.replace(/<b>|<\/b>/g, ""), 16)}</h4>
                     <p>셀러 : ${k.mallName._text}<br>카테고리 : <cate style="font-size:14px;">${k.category1._text}${k.category2._text ? " > " + k.category2._text : ""}${k.category3._text ? " > " + k.category3._text : ""}${k.category4._text ? " > " + k.category4._text : ""}</cate></p>
