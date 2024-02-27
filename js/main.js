@@ -1,16 +1,14 @@
 const TOP = document.getElementById("TOP");
 const Image_11st = "/image_11st?link=";
 const Image_Naver = "/image_naver?link=";
-hasSearched_st11 = 0;
-Wheresite = 0; // naver :1 , 11st : 2
+const hasSearched = {
+  st11: 0
+};
 // aliexpress : https://openservice.aliexpress.com/doc/api.htm?spm=a2o9m.11193494.0.0.35db2b90YT3YR2#/api?cid=21038&path=aliexpress.ds.recommend.feed.get&methodType=GET/POST
 
 function issearchdev(search_data) {
-  const keywords = ["도혁", "동영", "유익", "은성", "우혁"];
-
-  if (keywords.some((keyword) => search_data.includes(keyword))) {
-    return true;
-  }
+  const developers = ["도혁", "동영", "유익", "은성", "우혁"];
+	return developers.some((data) => search_data.includes(data));
 }
 
 function displayResult() {
@@ -74,13 +72,10 @@ function truncateText(text, maxLength) {
 }
 
 async function search11st(item) {
-  let search =
-    (document.getElementById("product_item").textContent.match(/-> (.+)/) ||
-      [])[1] || item;
+  let search = (document.getElementById("product_item").textContent.match(/-> (.+)/) || [])[1] || item;
   let tag = document.getElementById("st11_product");
-  if (issearchdev(search))
-    return (tag.innerHTML = "<h3>누가 개발자를 검색하래!</h3>");
-  if (hasSearched_st11 != 0) return;
+  if (issearchdev(search))  return (tag.innerHTML = "<h3>누가 개발자를 검색하래!</h3>");
+  if (hasSearched.st11 != 0) return;
   tag.innerHTML = "<h3>검색 중... 결과가 나오고있어요!</h3>";
 
   const res = await fetch("/11st", {
@@ -89,7 +84,7 @@ async function search11st(item) {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      keyword: search,
+      keyword: search
     }),
   });
   const channel = await res.json();
@@ -122,7 +117,7 @@ async function search11st(item) {
     `;
     tag.appendChild(ntag);
   }
-  hasSearched_st11 += 1;
+  hasSearched.st11 += 1;
 }
 
 async function searchNaver(search, search_data) {
@@ -187,12 +182,7 @@ async function searchNaver(search, search_data) {
 }
 
 function addButton_additional(site, search_data) {
-  let data =
-    (search_data.match(/-> (.+)/) || [])[1] ||
-    search_data
-      .split("\n")
-      .map((line) => line.trim().substring(2))
-      .filter(Boolean);
+  let data = (search_data.match(/-> (.+)/) || [])[1] || search_data.split("\n").map((line) => line.trim().substring(2)).filter(Boolean);
   addButton(site, data);
 }
 
@@ -206,8 +196,7 @@ function addButton(site, search_data) {
 
   let buttonElement = document.createElement("button");
   buttonElement.type = "submit";
-  buttonElement.className =
-    "btn btn-primary border-3 border-secondary py-2 px-4 position-relative rounded-pill text-white h-100";
+  buttonElement.className = "btn btn-primary border-3 border-secondary py-2 px-4 position-relative rounded-pill text-white h-100";
   buttonElement.style.top = "5px";
   buttonElement.textContent = "더보기";
 
@@ -235,8 +224,7 @@ async function typocheck(search) {
   });
   const data = await ress.json();
   let search_data = data.errata;
-  if (search_data == "" || search_data == undefined || search_data == null)
-    search_data = search;
+  if (search_data == "" || search_data == undefined || search_data == null) search_data = search;
   searchNaver(search, search_data);
   addButton("naver", search_data);
 }
@@ -245,5 +233,5 @@ function RunCode() {
   let search = document.getElementById("input_keyword").value;
   displayResult();
   typocheck(search);
-  hasSearched_st11 = 0;
+  hasSearched.st11 = 0;
 }
